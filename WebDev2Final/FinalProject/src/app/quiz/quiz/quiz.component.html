@@ -1,0 +1,16 @@
+<form class="quiz-form" (ngSubmit)="onSubmit()">
+  <div class="questions-container" *ngFor="let question of questions">
+    <h4 class="question">{{ question.text }}</h4>
+    <ul class="options">
+      <li class="option" *ngFor="let option of question.options">
+        <label>
+          <input type="radio" class="radio-button" [name]="'question' + question.id" [value]="option.id"
+                 [(ngModel)]="answers[question.id - 1].answer" [disabled]="quizTaken">
+          <span class="option-text">{{ option.text }}</span>
+        </label>
+      </li>
+    </ul>
+  </div>
+  <button class="submit-button" [disabled]="quizTaken" (click)="onSubmit()">Submit</button>
+  <button class="reset-button" [disabled]="!quizTaken" (click)="resetQuiz()">Start Over</button>
+</form>
