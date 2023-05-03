@@ -7,6 +7,7 @@ import { GradeComponent } from './quiz/grade/grade.component';
 import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
 
+import { HttpClientModule } from "@angular/common/http";
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FooterComponent } from './footer/footer.component';
@@ -20,6 +21,7 @@ import { FooterComponent } from './footer/footer.component';
     FooterComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     FormsModule,
     MatToolbarModule,

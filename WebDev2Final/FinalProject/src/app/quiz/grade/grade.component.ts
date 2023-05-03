@@ -11,17 +11,21 @@ export class GradeComponent {
   score = 0;
   total = 0;
   private quizSub: Subscription = new Subscription(); // subscription for observer
+  private quizSub1: Subscription = new Subscription(); // subscription for observer
 
   constructor(private quizService: QuizService) { }
 
   ngOnInit() {
     this.quizSub = this.quizService.getScore().subscribe((score: number) => {
       this.score = score;
-      this.total = this.quizService.getQuizLength();
+      this.quizSub1 = this.quizService.getQuizLength().subscribe((length: number) => {
+        this.total = length;
+      });
     });
   }
   ngOnDestroy(){
     this.quizSub.unsubscribe();
+    this.quizSub1.unsubscribe();
   }
 
 }
