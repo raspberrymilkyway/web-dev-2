@@ -5,6 +5,18 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
 
+const mongoose = require('mongoose')
+
+const QuizModel = require('./Models/quiz')
+
+mongoose.connect('mongodb+srv://jalinevans:test@webdevfinalproject.1jyrndh.mongodb.net/?retryWrites=true&w=majority')
+.then(()=>{
+    console.log('Connected to database')
+})
+.catch(()=>{
+    console.log('Connection erro')
+})
+
 app.use((req,res,next) => {
     res.setHeader("Access-Control-Allow-Origin","*")
     res.setHeader(
@@ -19,52 +31,14 @@ app.use((req,res,next) => {
     next();
 });
 
-// app.post("/api/quiz",(req,res,next)=>{
-//     const quiz = req.body
-//     console.log(quiz)
-//     res.status(201).json({
-//         message: "Quiz added successfully"
-//     })
-// });
-
-app.get('/api/quiz',(req,res,next)=>{
-    const questions = [
-    {
-        id: 1,
-        text: 'Answer is number 1',
-        options: [
-        { id: 1, text: '1' },
-        { id: 2, text: '2' },
-        { id: 3, text: '3' },
-        { id: 4, text: '4' }
-        ],
-        answer: 1
-    },
-    {
-        id: 2,
-        text: 'Answer is number 2',
-        options: [
-        { id: 1, text: '1' },
-        { id: 2, text: '2' },
-        { id: 3, text: '3' },
-        { id: 4, text: '4' }
-        ],
-        answer: 2
-    },
-    {
-        id: 3,
-        text: 'Answer is number 3',
-        options: [
-        { id: 1, text: '1' },
-        { id: 2, text: '2' },
-        { id: 3, text: '3' },
-        { id: 4, text: '4' }
-        ],
-        answer: 3
-    }
-    ];
-    res.json(questions);
+app.get('/api/quiz', (req, res, next) => {
+    QuizModel.find().then(data => {
+        res.status(200).json(data);
+      })
+      .catch((error) => {
+        console.error(error);
+        res.status(500).json({ message: 'Failed to retrieve quiz questions.' });
+      });
 });
-
 
 module.exports = app;

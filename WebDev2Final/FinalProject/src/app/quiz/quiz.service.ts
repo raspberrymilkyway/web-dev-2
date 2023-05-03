@@ -6,41 +6,6 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class QuizService {
-  // private questions: any[] = [
-  //   {
-  //     id: 1,
-  //     text: 'Answer is number 1',
-  //     options: [
-  //       { id: 1, text: '1' },
-  //       { id: 2, text: '2' },
-  //       { id: 3, text: '3' },
-  //       { id: 4, text: '4' }
-  //     ],
-  //     answer: 1
-  //   },
-  //   {
-  //     id: 2,
-  //     text: 'Answer is number 2',
-  //     options: [
-  //       { id: 1, text: '1' },
-  //       { id: 2, text: '2' },
-  //       { id: 3, text: '3' },
-  //       { id: 4, text: '4' }
-  //     ],
-  //     answer: 2
-  //   },
-  //   {
-  //     id: 3,
-  //     text: 'Answer is number 3',
-  //     options: [
-  //       { id: 1, text: '1' },
-  //       { id: 2, text: '2' },
-  //       { id: 3, text: '3' },
-  //       { id: 4, text: '4' }
-  //     ],
-  //     answer: 3
-  //   }
-  // ];
 
   private score: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   private quizTaken: boolean = false;
@@ -48,7 +13,7 @@ export class QuizService {
   constructor(private http: HttpClient){};
 
   questions = this.http.get<any[]>('http://localhost:3000/api/quiz')
-
+  
   getQuestions(): Observable<any[]> {
     return this.questions;
   }
