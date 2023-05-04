@@ -1,8 +1,16 @@
 <mat-toolbar color="primary">
-    <a mat-raised-button class="nav" href="" aria-label="Home button">
+    <a mat-flat-button class="nav" color="primary" href="" aria-label="Home button">
         <span>Home</span>
     </a>
-    <a mat-raised-button href="/quiz" class="nav" aria-label="app-quiz button">
+    <a mat-flat-button class="nav" color="primary" href="/quiz" aria-label="Quiz button">
         <span>Quiz</span>
     </a>
+    <span class="spacer"></span>
+    <button mat-icon-button id="moon-filled" (click)="changeTheme()" hidden>
+        <mat-icon svgIcon="moon-filled"></mat-icon>
+    </button>
+    <button mat-icon-button id="moon" (click)="changeTheme()">
+        <mat-icon svgIcon="moon"></mat-icon>
+    </button>
 </mat-toolbar>
+ 

@@ -1,6 +1,8 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
-<p></p>
-<app-quiz></app-quiz>
-<app-grade></app-grade>
-<app-footer></app-footer>
+<div class="mat-typography light" id="bg" (swapEvent)="swapDark($any($event))">
+    <app-header></app-header>
+    <router-outlet></router-outlet>
+    <p></p>
+    <app-quiz></app-quiz>
+    <app-grade></app-grade>
+    <app-footer></app-footer>
+</div>
