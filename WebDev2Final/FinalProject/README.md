@@ -1,5 +1,11 @@
 # FinalProject
 
+TO RUN OUR PROJECT
+------------------
+Run `npm run start:server`.
+In a separate terminal, run `ng serve`.
+------------------
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.7.
 
 ## Development server
