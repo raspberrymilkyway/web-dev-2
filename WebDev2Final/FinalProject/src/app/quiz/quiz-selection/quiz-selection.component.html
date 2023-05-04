@@ -1,0 +1,7 @@
+<ng-container *ngIf="!quizSelected">
+  <h1>Select a Quiz</h1>
+  <div *ngFor="let quiz of quizzes; let i = index">
+    <button class="button" (click)="selectQuiz(i)">{{ quiz.quiz_name }}</button>
+  </div>
+</ng-container>
+<app-quiz *ngIf="quizSelected"></app-quiz>

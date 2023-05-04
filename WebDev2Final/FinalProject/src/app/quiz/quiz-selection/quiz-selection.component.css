@@ -1,0 +1,20 @@
+
+h1 {
+    text-align: center;
+}
+
+.button {
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    margin-bottom: 5px;
+    padding: 10px;
+    font-size: 20px;
+    background-color: lightgrey;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+  
+.button:hover {
+    background-color: rgb(163, 199, 249);
+}   

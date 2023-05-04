@@ -9,12 +9,12 @@ const mongoose = require('mongoose')
 
 const QuizModel = require('./Models/quiz')
 
-mongoose.connect('mongodb+srv://jalinevans:test@webdevfinalproject.1jyrndh.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://jalinevans:test@webdevfinalproject.1jyrndh.mongodb.net/WebDevApp?retryWrites=true&w=majority')
 .then(()=>{
     console.log('Connected to database')
 })
 .catch(()=>{
-    console.log('Connection erro')
+    console.log('Connection error')
 })
 
 app.use((req,res,next) => {

@@ -1,16 +1,17 @@
-<form class="quiz-form" (ngSubmit)="onSubmit()">
-  <div class="questions-container" *ngFor="let question of questions">
-    <h4 class="question">{{ question.text }}</h4>
+<form class="quizForm" (ngSubmit)="onSubmit()">
+  <h1 class="quizName">{{ quizName }}</h1>
+  <div *ngFor="let question of questions; let i = index">
+    <h4 class="question">{{ i+1 }}. {{ question.question }}</h4>
     <ul class="options">
       <li class="option" *ngFor="let option of question.options">
         <label>
-          <input type="radio" class="radio-button" [name]="'question' + question.id" [value]="option.id"
-                 [(ngModel)]="answers[question.id - 1].answer" [disabled]="quizTaken">
-          <span class="option-text">{{ option.text }}</span>
+          <input type="radio" class="radioButton" [name]="'question' + question.id" [value]="option.id" [(ngModel)]="answers[question.id - 1].answer" [disabled]="quizTaken">
+          <span class="optionText">{{ option.text }}</span>
         </label>
       </li>
     </ul>
   </div>
-  <button class="submit-button" [disabled]="quizTaken" (click)="onSubmit()">Submit</button>
-  <button class="reset-button" [disabled]="!quizTaken" (click)="resetQuiz()">Start Over</button>
+  <button class="submitButton" [disabled]="quizTaken" (click)="onSubmit()">Submit</button>
+  <button class="resetButton" [disabled]="!quizTaken" (click)="resetQuiz()">Start Over</button>
+  <app-grade *ngIf="quizTaken"></app-grade>
 </form>
