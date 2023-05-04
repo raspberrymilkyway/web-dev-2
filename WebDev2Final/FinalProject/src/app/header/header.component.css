@@ -1,3 +1,8 @@
 .nav{
     margin-right: 1em;
+    text-decoration: none;
+}
+
+.nav span{
+    text-decoration: none;
 }
