@@ -16,4 +16,6 @@ HEALTHCHECK --interval=2m --timeout=5s --start-period=2m \
 CMD echo "Warming up" && sleep 5 && npm start
 
 # https://dockertraining.readthedocs.io/en/latest/nodejs/angularjs-mongodb.html
-
+# this is horrible
+# if RUN npm install doesn't finish this time
+#   my laptop and i will die

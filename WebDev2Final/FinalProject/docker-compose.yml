@@ -1,41 +1,39 @@
 version: '3'
 services:
-  database:
-    image: mongo
-    restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: coloroloc
-      MONGO_INITDB_ROOT_PASSWORD: TofuGremlin3*
-      # Create a new database. Please note, the
-      # /docker-entrypoint-initdb.d/init.js has to be executed
-      # in order for the database to be created
-      MONGO_INITDB_DATABASE: WebDevFinalProject
-    volumes:
-      # Add the db-init.js file to the Mongo DB container
-      - ./db-init.js:/docker-entrypoint-initdb.d/init.js:ro
-    ports:
-      - '27017-27019:27017-27019'
+  # database:
+  #   image: mongo
+  #   restart: always
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: coloroloc
+  #     MONGO_INITDB_ROOT_PASSWORD: --
+  #     # Create a new database. Please note, the
+  #     # /docker-entrypoint-initdb.d/init.js has to be executed
+  #     # in order for the database to be created
+  #     MONGO_INITDB_DATABASE: WebDevFinalProject
+  #   volumes:
+  #     # Add the db-init.js file to the Mongo DB container
+  #     - ./db-init.js:/docker-entrypoint-initdb.d/init.js:ro
+  #   ports:
+  #     - '27017-27019:27017-27019'
 
-  mongo-express:
-    image: mongo-express
-    restart: always
-    ports:
-      - 8081:8081
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: coloroloc
-      ME_CONFIG_MONGODB_ADMINPASSWORD: TofuGremlin3*
-      ME_CONFIG_MONGODB_SERVER: WebDevFinalProject
-    depends_on:
-      - database
+  # mongo-express:
+  #   image: mongo-express
+  #   restart: always
+  #   ports:
+  #     - 8081:8081
+  #   environment:
+  #     ME_CONFIG_MONGODB_ADMINUSERNAME: coloroloc
+  #     ME_CONFIG_MONGODB_ADMINPASSWORD: --
+  #     ME_CONFIG_MONGODB_SERVER: WebDevFinalProject
+  #   depends_on:
+  #     - database
 
   web:
     build: .
-    image: realestate-angular
+    image: final-build
     environment:
       # Use the username and password found in the db-init.js file instead
       # of the root username.
-      MONGODB_URI: mongodb+srv://jalinevans:TofuGremlin3*@webdevfinalproject.1jyrndh.mongodb.net/?retryWrites=true&w=majority
-    depends_on:
-      - database
+      MONGODB_URI: mongodb+srv://jalinevans:test@webdevfinalproject.1jyrndh.mongodb.net/?retryWrites=true&w=majority
     ports:
       - 8082:5000
