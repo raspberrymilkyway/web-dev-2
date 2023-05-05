@@ -13,7 +13,7 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $FinalProject-primary: mat.define-palette(mat.$blue-palette);
-$FinalProject-accent: mat.define-palette(mat.$blue-palette, A200, A100, A400);
+$FinalProject-accent: mat.define-palette(mat.$blue-palette, 800);
 
 // The warn palette is optional (defaults to red).
 $FinalProject-warn: mat.define-palette(mat.$red-palette);

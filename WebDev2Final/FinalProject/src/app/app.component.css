@@ -1,0 +1,8 @@
+#footer{
+    position:fixed;
+    bottom:0px;
+    width: 100%;
+}
+#not-footer{
+    padding-bottom: 80px;
+}
