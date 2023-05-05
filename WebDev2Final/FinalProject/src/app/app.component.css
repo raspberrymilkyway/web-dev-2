@@ -6,3 +6,12 @@
 #not-footer{
     padding-bottom: 80px;
 }
+
+#header{
+    position:fixed;
+    top:0px;
+    width:100%;
+}
+.not-header{
+    padding-top: 80px;
+}
