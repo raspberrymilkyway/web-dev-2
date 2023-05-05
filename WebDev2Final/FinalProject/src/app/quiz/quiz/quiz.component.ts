@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy  } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { Answer } from '../answer-model';
+import { QuizData } from '../quiz-model';
 import { QuizService } from '../quiz.service';
 
 @Component({
@@ -9,30 +10,38 @@ import { QuizService } from '../quiz.service';
   templateUrl: './quiz.component.html',
   styleUrls: ['./quiz.component.css']
 })
-export class QuizComponent {
+export class QuizComponent implements OnInit, OnDestroy {
 
-  questions: any[] = [];
-  answers: Answer[] = []
-  quizTaken: boolean = false;
-  private quizSub: Subscription = new Subscription(); // subscription for observer
+  questions: QuizData['questions'] = [];
+  answers: Answer[] = [];
+  quizName = '';
+  quizTaken = false;
+  currentQuizID: number = 0;
+  private quizSub: Subscription = new Subscription();
 
   constructor(private quizService: QuizService) { }
 
-  ngOnInit() { // retrieve question from server and store them in the questions array
-    this.quizSub = this.quizService.getQuestions().subscribe((data: any[]) => {
-      this.questions = data;
-      this.questions.forEach(q => this.answers.push({ question: q.id, answer: '' })); // creates empty answer object for each quiz question so the user answer may be stored and graded later on
-    });
-    this.quizTaken = this.quizService.getQuizStatus();
+  ngOnInit(): void {
+    if (this.quizService.getCurrentQuizID() !== undefined) {
+      this.quizSub = this.quizService.getQuiz()
+        .subscribe((quiz: QuizData[]) => {
+          this.currentQuizID = this.quizService.getCurrentQuizID();
+          this.quizName = quiz[this.currentQuizID].quiz_name;
+          this.questions = quiz[this.currentQuizID].questions;
+          this.answers = this.questions.map(q => ({ questionID: q.id, answer: '' }));
+          this.quizService.setCurrentQuizName(this.quizName);
+          this.quizTaken = this.quizService.getQuizStatus();
+        });
+    }
   }
-
-  ngOnDestroy(){
+  
+  ngOnDestroy(): void {
     this.quizSub.unsubscribe();
   }
 
   onSubmit(): void {
     this.answers.forEach(answer => {
-      this.quizService.checkAnswer(answer.question, answer.answer);
+      this.quizService.checkAnswer(answer.questionID, answer.answer);
     });
     this.quizTaken = true;
     this.quizService.setQuizTaken();
@@ -41,7 +50,7 @@ export class QuizComponent {
   resetQuiz(): void {
     this.quizTaken = false;
     this.quizService.resetScore();
-    this.answers = this.answers.map(answer => ({ question: answer.question, answer: '' }));
+    this.answers = this.answers.map(answer => ({ questionID: answer.questionID, answer: '' }));
   }
 
 }
