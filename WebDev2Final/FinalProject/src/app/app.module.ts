@@ -15,6 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { RoutingModule } from './routing.module';
 import {MatButtonModule} from '@angular/material/button';
+import { MakeQuizComponent } from './quiz/make-quiz/make-quiz.component';
+import { MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,8 @@ import {MatButtonModule} from '@angular/material/button';
     GradeComponent,
     HeaderComponent,
     FooterComponent,
-    QuizSelectionComponent
+    QuizSelectionComponent,
+    MakeQuizComponent
   ],
   imports: [
     HttpClientModule,
@@ -32,7 +35,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatToolbarModule,
     BrowserAnimationsModule,
     RoutingModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]
