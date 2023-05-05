@@ -16,7 +16,7 @@ export class QuizComponent implements OnInit, OnDestroy {
   answers: Answer[] = [];
   quizName = '';
   quizTaken = false;
-  currentQuizID: number | undefined;
+  currentQuizID: number = 0;
   private quizSub: Subscription = new Subscription();
 
   constructor(private quizService: QuizService) { }

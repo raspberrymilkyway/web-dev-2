@@ -5,7 +5,7 @@
     <ul class="options">
       <li class="option" *ngFor="let option of question.options">
         <label>
-          <input type="radio" class="radioButton" [name]="'question' + question.id" [value]="option.id" [(ngModel)]="answers[question.id - 1].answer" [disabled]="quizTaken">
+          <input class="radioButton" type="radio" [disabled]="quizTaken" [name]=" 'question' + question.id" [value]="option.id" [(ngModel)]="answers[question.id - 1].answer" >
           <span class="optionText">{{ option.text }}</span>
         </label>
       </li>
