@@ -13,6 +13,9 @@ import { HttpClientModule } from "@angular/common/http";
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { RoutingModule } from './routing.module';
+import {MatButtonModule} from '@angular/material/button';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +30,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     FormsModule,
     MatToolbarModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RoutingModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
