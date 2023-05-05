@@ -1,5 +1,4 @@
 <form class="quizForm" (ngSubmit)="onSubmit()">
-  <a id="top"></a>
   <h1 class="quizName">{{ quizName }}</h1>
   <div *ngFor="let question of questions; let i = index">
     <h4 class="question">{{ i+1 }}. {{ question.question }}</h4>
@@ -13,7 +12,6 @@
     </ul>
   </div>
   <button class="submitButton" [disabled]="quizTaken" (click)="onSubmit()">Submit</button>
-  <a id="backUp" href="#top"><button class="resetButton" [disabled]="!quizTaken" (click)="resetQuiz()">Start Over</button></a>
+  <button class="resetButton" [disabled]="!quizTaken" (click)="resetQuiz()">Start Over</button>
   <app-grade *ngIf="quizTaken"></app-grade>
-  <a id="bottom"></a>
 </form>
